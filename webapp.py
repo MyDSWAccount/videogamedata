@@ -6,5 +6,9 @@ app = Flask(__name__)
 def render_main():
     return render_template('home.html')
 
+@app.route("/pop")
+def render_main():
+    return render_template('popGame.html')
+
 if __name__=="__main__":
     app.run(debug=False, port=54321)
