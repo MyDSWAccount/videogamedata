@@ -1,1 +1,17 @@
+{% extends "layout.html" %}
 
+{% set active_page = "popGame" %}
+
+{% block title %}Popular Games{% endblock %}
+
+{% block content %}
+   <h1>Popular games of each year</h1>
+   <form action="/popGames">
+    <select name="games">
+     {{options}}
+    </select>
+    <br><br>
+    <input type="submit" value="Select a year">
+  </form>
+   <p>{{gameData}}</p>
+{% endblock %}
