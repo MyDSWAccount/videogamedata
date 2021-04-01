@@ -9,17 +9,28 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
    
-   <link rel="stylesheet" href="myStyle.css"> 
-   <script src="myScript.js"></script>
-   <title>Video Game Data Analysis</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   <title>{% block title %}{% endblock %} - Video Game Data Analysis</title>
+   
   </head>
   <body>
-   <h1>About the Video Game Dataset</h1>
-   <p>The data used as part of this project is from the <a href="https://think.cs.vt.edu/corgis/json/index.html">CORGIS Datasets Project</a>. 
-     For this webapp I am using the Video Games dataset from that website, which can be found <a href="https://think.cs.vt.edu/corgis/json/video_games/">here</a>.</p>
-   <p>Included in this dataset is information about games released from 2004 until 2010. That information includes the name, publisher, rating, sales and, if applicable, 
-    average playtime of each individual game. Playtime is listed as hours for the category which is chosen (average playtime, average completion playtime, average main story playtime, etc.)</p>
-    <p>Two things to note: First, if the playtime of any game is 0 that section of data was not polled for (i.e. the "polled" variable for that section also equals zero). 
-      Second is that sales are recorded in millions of dollars, which is why they appear as decimals.</p>
+   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <a class="navbar-brand" href="#">Video Game Dataset Analysis</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li {% if active_page == "home" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="/">Video Game Dataset Information</a>
+          </li>
+          <li {% if active_page == "popGame" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="/pop">Highly reviewed games</a>
+          </li>   
+        </ul>
+      </div>  
+    </nav>
+   
+   {% block content %}{% endblock %}
   </body>
 </html>
