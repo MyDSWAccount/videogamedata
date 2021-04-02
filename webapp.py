@@ -18,10 +18,10 @@ def get_years():
         videos = json.load(vG_data)
     for video in videos:
         if video["Release"]["Year"] not in listOfYears:
-            listOfYears.append(str(video["Release"]["Year"]))
+            listOfYears.append(video["Release"]["Year"])
     options = ""
     for year in listOfYears:
-        options = options + Markup("<option value=\"" + year + "\">" + year + "</option>")
+        options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
     return options
 
 if __name__=="__main__":
