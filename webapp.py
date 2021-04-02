@@ -12,6 +12,11 @@ def render_main():
 def render_pop_games():
     return render_template('popGame.html', options=get_years())
 
+@app.route("/popGame")
+def render_game_info():
+    year_chosen = request.args['games']
+    return render_template('popGame.html', options=get_years(), game=get_game_data(year_chosen))
+
 def get_years():
     listOfYears = []
     with open('video_games.json') as vG_data:
