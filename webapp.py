@@ -35,7 +35,7 @@ def get_game_data(year):
     high_rate = 0
     name = ""
     for game in videos:
-        if game["Release"]["Year"] == year && game["Metrics"]["Review Score"] > high_rate:
+        if game["Release"]["Year"] == year and game["Metrics"]["Review Score"] > high_rate:
             high_rate = game["Metrics"]["Review Score"]
             name = game["Title"]
     game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + high_rate + " out of 100."
