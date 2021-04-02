@@ -15,7 +15,7 @@ def render_pop_games():
 @app.route("/popGame")
 def render_game_info():
     year_chosen = request.args['games']
-    return render_template('popGame.html', options=get_years(), game=get_game_data(year_chosen))
+    return render_template('popGame.html', options=get_years(), gameData=get_game_data(year_chosen))
 
 def get_years():
     listOfYears = []
@@ -28,6 +28,18 @@ def get_years():
     for year in listOfYears:
         options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
     return options
+
+def get_game_data(year):
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    high_rate = 0
+    name = ""
+    for game in videos:
+        if game["Release"]["Year"] == year && game["Metrics"]["Review Score"] > high_rate:
+            high_rate = game["Metrics"]["Review Score"]
+            name = game["Title"]
+    game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + high_rate + " out of 100."
+    return game_dat
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
