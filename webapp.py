@@ -26,7 +26,7 @@ def get_years():
             listOfYears.append(video["Release"]["Year"])
     options = ""
     for year in listOfYears:
-        options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
+        options = options + Markup("<option value=\"" + year + "\">" + year + "</option>")
     return options
 
 def get_game_data(year):
