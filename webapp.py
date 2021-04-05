@@ -26,7 +26,7 @@ def get_years():
             listOfYears.append(video["Release"]["Year"])
     options = ""
     for year in listOfYears:
-        options = options + Markup("<option value=\"" + year + "\">" + year + "</option>")
+        options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
     return options
 
 def get_game_data(year):
@@ -38,7 +38,7 @@ def get_game_data(year):
         if game["Release"]["Year"] == year and game["Metrics"]["Review Score"] > high_rate:
             high_rate = game["Metrics"]["Review Score"]
             name = game["Title"]
-    game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + high_rate + " out of 100."
+    game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + str(high_rate) + " out of 100."
     return game_dat
 
 if __name__=="__main__":
