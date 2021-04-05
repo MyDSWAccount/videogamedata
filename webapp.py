@@ -39,7 +39,7 @@ def get_game_data(year):
             high_rate = game["Metrics"]["Review Score"]
             name = game["Title"]
     game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + str(high_rate) + " out of 100."
-    return game_dat
+    return name
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
