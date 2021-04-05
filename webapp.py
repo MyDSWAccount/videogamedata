@@ -29,17 +29,17 @@ def get_years():
         options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
     return options
 
-def get_game_data(year):
+def get_game_data(yr):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     high_rate = 0
     name = ""
     for game in videos:
-        if game["Release"]["Year"] == year and game["Metrics"]["Review Score"] > high_rate:
+        if game["Release"]["Year"] == yr and game["Metrics"]["Review Score"] > high_rate:
             high_rate = game["Metrics"]["Review Score"]
             name = game["Title"]
-    game_dat = "The most popular game of " + str(year) + " was " + name + " with a metacritic score of " + str(high_rate) + " out of 100."
-    return name
+    game_dat = "The most popular game of " + str(yr) + " was " + name + " with a metacritic score of " + str(high_rate) + " out of 100."
+    return game_dat
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
