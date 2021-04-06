@@ -36,10 +36,10 @@ def get_game_data(yr):
     nm = ""
     for game in videos:
         print(game)
-        print(game["Release"]["Year"] == yr)
-        print(yr)
-        print(game["Release"]["Year"])
-        if (game["Release"]["Year"] == yr) and (game["Metrics"]["Review Score"] > high_rate):
+        print(game["Release"]["Year"] == int(yr))
+        print(type(yr))
+        print(type(game["Release"]["Year"]))
+        if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] > high_rate):
             high_rate = game["Metrics"]["Review Score"]
             nm = game["Title"]
     game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100."
