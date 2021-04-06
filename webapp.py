@@ -35,10 +35,6 @@ def get_game_data(yr):
     high_rate = 0
     nm = ""
     for game in videos:
-        print(game)
-        print(game["Release"]["Year"] == int(yr))
-        print(type(yr))
-        print(type(game["Release"]["Year"]))
         if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] > high_rate):
             high_rate = game["Metrics"]["Review Score"]
             nm = game["Title"]
