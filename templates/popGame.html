@@ -6,12 +6,13 @@
 
 {% block content %}
    <h1>Popular games of each year</h1>
+   <p>Select a year</p>
    <form action="/popGame">
     <select name="games">
      {{options}}
     </select>
     <br><br>
-    <input type="submit" value="Select a year">
+    <input type="submit">
   </form>
    <p>{{gameData}}</p>
 {% endblock %}
