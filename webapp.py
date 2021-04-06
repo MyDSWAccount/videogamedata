@@ -48,7 +48,7 @@ def get_game_data(yr):
             np = game["Length"]["All PlayStyles"]["Polled"]
     game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100."
     other_dat = "The most played game of " + str(yr) + " was " + nm2 + " with an average playtime of " + str(pt) + " between " + str(np) + " users."
-    return game_dat
+    return game_dat, other_dat
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
