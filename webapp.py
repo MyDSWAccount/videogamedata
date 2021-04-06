@@ -33,12 +33,21 @@ def get_game_data(yr):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     high_rate = 0
+    pt = 0
+    np = 0
     nm = ""
+    nm2 = ""
     for game in videos:
         if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] > high_rate):
             high_rate = game["Metrics"]["Review Score"]
             nm = game["Title"]
-    game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100."
+    for game in videos:
+        if (game["Release"]["Year"] == int(yr)) and (game["Length"]["All PlayStyles"]["Average"] > pt):
+            pt = game["Length"]["All PlayStyles"]["Average"]
+            nm2 = game["Title"]
+            np = game["Length"]["All PlayStyles"]["Polled"]
+    game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100."\n
+                "The most played game of " + str(yr) + " was " + nm2 + " with an average playtime of " + str(pt) + " between " + str(np) + " users."
     return game_dat
 
 if __name__=="__main__":
