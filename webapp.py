@@ -46,8 +46,8 @@ def get_game_data(yr):
             pt = game["Length"]["All PlayStyles"]["Average"]
             nm2 = game["Title"]
             np = game["Length"]["All PlayStyles"]["Polled"]
-    game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100.\n" +
-                "The most played game of " + str(yr) + " was " + nm2 + " with an average playtime of " + str(pt) + " between " + str(np) + " users."
+    game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100." +
+               "The most played game of " + str(yr) + " was " + nm2 + " with an average playtime of " + str(pt) + " between " + str(np) + " users."
     return game_dat
 
 if __name__=="__main__":
