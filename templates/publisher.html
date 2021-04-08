@@ -1,1 +1,19 @@
+{% extends "layout.html" %}
 
+{% set active_page = "publisher" %}
+
+{% block title %}Publishers{% endblock %}
+
+{% block content %}
+   <h1>Information on game publishers</h1>
+   <p>Select a publisher</p>
+   <form action="/pubGame">
+    <select name="pubs">
+     {{options}}
+    </select>
+    <br><br>
+    <input type="submit">
+  </form>
+   <p>{{pubData}}</p>
+   <!--<p>{{gamePlay}}</p>-->
+{% endblock %}
