@@ -52,7 +52,7 @@ def get_played_game(yr):
     pub = ""
     cons = ""
     played_dat = ""
-    vowels = ['a','e','i','o','u']
+    vowels = ['A','E','I','O','U']
     for game in videos:
         if (game["Release"]["Year"] == int(yr)) and (game["Length"]["All PlayStyles"]["Average"] > pt):
             pt = game["Length"]["All PlayStyles"]["Average"]
