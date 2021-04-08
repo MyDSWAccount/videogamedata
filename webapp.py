@@ -73,7 +73,7 @@ def get_played_game(yr):
     elif pub == "" and gnr[0] in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
                       + nm + " is an " + gnr + " game published for the " + cons + ".")
-    
+    print(gnr[0])
     return played_dat
 
 if __name__=="__main__":
