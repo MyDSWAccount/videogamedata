@@ -38,7 +38,7 @@ def get_publishers():
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     for video in videos:
-        if (video["Metadata"]["Publishers"] not in listOfYears) and video["Metadata"]["Publishers"] != "":
+        if (video["Metadata"]["Publishers"] not in listOfPublishers) and video["Metadata"]["Publishers"] != "":
             listOfPublishers.append(video["Metadata"]["Publishers"])
     options = ""
     for publish in listOfPublishers:
