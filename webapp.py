@@ -108,7 +108,8 @@ def get_pub_game(pb):
             meta_review = meta_review + video["Metrics"]["Review Score"]
             count = count + 1
     av_review = meta_review/count
-    return av_review
+    review_desc = pb + "'s average metacritic review score was " + av_review + " between " + count + " games."
+    return review_desc
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
