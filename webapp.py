@@ -25,7 +25,7 @@ def render_pubs():
 @app.route("/pubGame")
 def render_pub_info():
     pub_chosen = request.args['pubs']
-    return render_template('publisher.html', options=get_publishers(), pubData=get_pub_game(pub_chosen))
+    return render_template('publisher.html', options=get_publishers(), pubData=get_pub_game(pub_chosen), pubSales=get_pub_sales(pub_chosen))
 
 def get_years():
     listOfYears = []
@@ -110,6 +110,19 @@ def get_pub_game(pb):
     av_review = meta_review/count
     review_desc = pb + "'s average metacritic review score was " + str(av_review) + " between " + str(count) + " games."
     return review_desc
+
+def get_pub_sales(pb):
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    sales = 0
+    count = 0
+    for video in videos:
+        if video["Metadata"]["Publishers"] == pb:
+            sales = sales + video["Metrics"]["Sales"]
+            count = count + 1
+    av_sales = sales/count
+    sale_desc = pb + "'s total sales from 2004 up to 2008 was $" + str(sales) + " million. " + pb + " sold $" + str(av_sales) + " million on average for each game " + pb + " released."
+    return sale_desc
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
