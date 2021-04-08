@@ -17,6 +17,10 @@ def render_game_info():
     year_chosen = request.args['games']
     return render_template('popGame.html', options=get_years(), gameData=get_pop_game(year_chosen), gamePlay=get_played_game(year_chosen))
 
+@app.route("/pub")
+def render_pubs():
+    return render_template('publisher.html', options=get_publishers())
+
 def get_years():
     listOfYears = []
     with open('video_games.json') as vG_data:
@@ -27,6 +31,18 @@ def get_years():
     options = ""
     for year in listOfYears:
         options = options + Markup("<option value=\"" + str(year) + "\">" + str(year) + "</option>")
+    return options
+
+def get_publishers():
+    listOfPublishers = []
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    for video in videos:
+        if (video["Metadata"]["Publishers"] not in listOfYears) and video["Metadata"]["Publishers"] != "":
+            listOfPublishers.append(video["Metadata"]["Publishers"])
+    options = ""
+    for publish in listOfPublishers:
+        options = options + Markup("<option value=\"" + publish + "\">" + publish + "</option>")
     return options
 
 def get_pop_game(yr):
