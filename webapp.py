@@ -52,6 +52,7 @@ def get_played_game(yr):
     pub = ""
     cons = ""
     played_dat = ""
+    vowels = ['a','e','i','o','u']
     for game in videos:
         if (game["Release"]["Year"] == int(yr)) and (game["Length"]["All PlayStyles"]["Average"] > pt):
             pt = game["Length"]["All PlayStyles"]["Average"]
@@ -60,12 +61,18 @@ def get_played_game(yr):
             gnr = game["Metadata"]["Genres"]
             pub = game["Metadata"]["Publishers"]
             cons = game["Release"]["Console"]
-    if pub != "":
+    if pub != "" and gnr[0] not in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
-                      + nm + " is a/an " + gnr + " game published by " + pub + " for the " + cons + ".")
-    else:
+                      + nm + " is a " + gnr + " game published by " + pub + " for the " + cons + ".")
+    elif pub != "" and gnr[0] in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
-                      + nm + " is a/an " + gnr + " game published for the " + cons + ".")
+                      + nm + " is an " + gnr + " game published by " + pub + " for the " + cons + ".")
+    elif pub == "" and gnr[0] not in vowels:
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+                      + nm + " is a " + gnr + " game published for the " + cons + ".")
+    elif pub == "" and gnr[0] in vowels:
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+                      + nm + " is an " + gnr + " game published for the " + cons + ".")
     
     return played_dat
 
