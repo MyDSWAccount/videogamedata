@@ -21,6 +21,12 @@ def render_game_info():
 def render_pubs():
     return render_template('publisher.html', options=get_publishers())
 
+
+@app.route("/pubGame")
+def render_pub_info():
+    pub_chosen = request.args['pubs']
+    return render_template('publisher.html', options=get_publishers(), pubData=get_pub_game(pub_chosen))
+
 def get_years():
     listOfYears = []
     with open('video_games.json') as vG_data:
@@ -91,6 +97,18 @@ def get_played_game(yr):
                       + nm + " is an " + gnr + " game published for the " + cons + ".")
     print(gnr[0])
     return played_dat
+
+def get_pub_game(pb):
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    meta_review = 0
+    count = 0
+    for video in videos:
+        if video["Metadata"]["Publishers"] == pb:
+            meta_review = meta_review + video["Metrics"]["Review Score"]
+            count = count + 1
+    av_review = meta_review/count
+    return av_review
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
