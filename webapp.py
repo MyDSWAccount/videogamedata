@@ -121,7 +121,7 @@ def get_pub_sales(pb):
             sales = sales + video["Metrics"]["Sales"]
             count = count + 1
     av_sales = sales/count
-    sale_desc = pb + "'s total sales from 2004 up to 2008 was $" + str(sales) + " million. " + pb + " sold $" + str(av_sales) + " million on average for each game " + pb + " released."
+    sale_desc = pb + "'s total sales from 2004 up to 2008 was $" + str(sales) + " million. " + pb + " sold $" + str(av_sales) + " million on average for each game it released."
     return sale_desc
 
 if __name__=="__main__":
