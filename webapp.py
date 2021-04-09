@@ -164,17 +164,17 @@ def get_gm_data(gam):
             gm_rtg = video["Release"]["Rating"]
             gm_tm = video["Length"]["All PlayStyles"]["Average"]
     if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
-        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
-                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
     elif gm_rtg[0] not in vowels and gm_gnr[0] in vowels:
-        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
-                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
     elif gm_rtg[0] in vowels and gm_gnr[0] not in vowels:
-        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
-                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
     elif gm_rtg[0] in vowels and gm_gnr[0] in vowels:
-        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
-                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
     return gm_desc
 
 if __name__=="__main__":
