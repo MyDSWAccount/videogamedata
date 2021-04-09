@@ -8,7 +8,7 @@ app = Flask(__name__)
 def render_main():
     return render_template('home.html')
 
-@app.route("/pop")
+@app.route("/year")
 def render_pop_games():
     return render_template('popGame.html', options=get_years())
 
