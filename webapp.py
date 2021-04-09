@@ -10,12 +10,12 @@ def render_main():
 
 @app.route("/year")
 def render_pop_games():
-    return render_template('popGame.html', options=get_years())
+    return render_template('year.html', options=get_years())
 
 @app.route("/popGame")
 def render_game_info():
     year_chosen = request.args['games']
-    return render_template('popGame.html', options=get_years(), gameData=get_pop_game(year_chosen), gamePlay=get_played_game(year_chosen))
+    return render_template('year.html', options=get_years(), gameData=get_pop_game(year_chosen), gamePlay=get_played_game(year_chosen))
 
 @app.route("/pub")
 def render_pubs():
@@ -95,7 +95,6 @@ def get_played_game(yr):
     elif pub == "" and gnr[0] in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
                       + nm + " is an " + gnr + " game published for the " + cons + ".")
-    print(gnr[0])
     return played_dat
 
 def get_pub_game(pb):
