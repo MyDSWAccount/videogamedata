@@ -24,11 +24,14 @@
           <li {% if active_page == "home" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
             <a class="nav-link" href="/">Information</a>
           </li>
-          <li {% if active_page == "popGame" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
-            <a class="nav-link" href="/pop">Popular video games</a>
+          <li {% if active_page == "year" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="/year">Video Games by Year</a>
           </li> 
           <li {% if active_page == "publisher" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
-            <a class="nav-link" href="/pub">Publisher information</a>
+            <a class="nav-link" href="/pub">Video Games by Publisher</a>
+          </li> 
+          <li {% if active_page == "game" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+            <a class="nav-link" href="/game">Individual Video Games</a>
           </li> 
         </ul>
       </div>  
