@@ -143,5 +143,39 @@ def get_pub_sales(pb):
     sale_desc = pb + "'s total sales from 2004 until 2008 was $" + str(sales) + " million. " + pb + " sold $" + str(av_sales) + " million on average for each game it released."
     return sale_desc
 
+def get_gm_data(gam):
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    gm_gnr = ""
+    gm_rev = 0
+    gm_pub = ""
+    gm_cons = ""
+    gm_yr = ""
+    gm_rtg = ""
+    gm_tm = 0
+    vowels = ['A','E','I','O','U']
+    for video in videos:
+        if video["Title"] == gam:
+            gm_gnr = video["Metadata"]["Genres"]
+            gm_rev = video["Metrics"]["Review Score"]
+            gm_pub = video["Metadata"]["Publishers"]
+            gm_cons = video["Release"]["Console"]
+            gm_yr = video["Release"]["Year"]
+            gm_rtg = video["Release"]["Rating"]
+            gm_tm = video["Length"]["All PlayStyles"]["Average"]
+    if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
+        gm_desc = (gm + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
+                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+    elif gm_rtg not in vowels and gnr[0] in vowels:
+        gm_desc = (gm + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
+                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+    elif gm_rtg in vowels and gnr[0] not in vowels:
+        gm_desc = (gm + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
+                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+    elif gm_rtg in vowels and gnr[0] in vowels:
+        gm_desc = (gm + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
+                   + gm_rtg + " rated game with a " + gm_rev + " review score.")
+    return gm_desc
+
 if __name__=="__main__":
     app.run(debug=False, port=54321)
