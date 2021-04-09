@@ -166,13 +166,13 @@ def get_gm_data(gam):
     if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
         gm_desc = (gm + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
                    + gm_rtg + " rated game with a " + gm_rev + " review score.")
-    elif gm_rtg not in vowels and gnr[0] in vowels:
+    elif gm_rtg[0] not in vowels and gm_gnr[0] in vowels:
         gm_desc = (gm + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is a " 
                    + gm_rtg + " rated game with a " + gm_rev + " review score.")
-    elif gm_rtg in vowels and gnr[0] not in vowels:
+    elif gm_rtg[0] in vowels and gm_gnr[0] not in vowels:
         gm_desc = (gm + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
                    + gm_rtg + " rated game with a " + gm_rev + " review score.")
-    elif gm_rtg in vowels and gnr[0] in vowels:
+    elif gm_rtg[0] in vowels and gm_gnr[0] in vowels:
         gm_desc = (gm + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + gm_yr + " and is an " 
                    + gm_rtg + " rated game with a " + gm_rev + " review score.")
     return gm_desc
