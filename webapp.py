@@ -21,6 +21,9 @@ def render_game_info():
 def render_pubs():
     return render_template('publisher.html', options=get_publishers())
 
+@app.route("/game")
+def render_gms():
+    return render_template('game.html', options=get_game())
 
 @app.route("/pubGame")
 def render_pub_info():
@@ -49,6 +52,18 @@ def get_publishers():
     options = ""
     for publish in listOfPublishers:
         options = options + Markup("<option value=\"" + publish + "\">" + publish + "</option>")
+    return options
+
+def get_game():
+    listOfGames = []
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    for video in videos:
+        if video["Title"] not in listOfGames:
+            listOfGames.append(video["Title"])
+    options = ""
+    for gam in listOfGames:
+        options = options + Markup("<option value=\"" + gam + "\">" + gam + "</option>")
     return options
 
 def get_pop_game(yr):
