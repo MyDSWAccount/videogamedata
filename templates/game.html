@@ -1,1 +1,25 @@
+{% extends "layout.html" %}
 
+{% set active_page = "game" %}
+
+{% block title %}Individual games{% endblock %}
+
+{% block content %}
+   <h1>Information about individual games</h1>
+   <p>Select a game</p>
+   <form action="/gmGame">
+    <select name="gms">
+     {{options}}
+    </select>
+    <br><br>
+    <input type="submit">
+    <br><br>
+  </form>
+   <p>General game data:</p>
+   <br>
+   <p>{{gmData}}</p>
+   <br>
+   <p>Game sales data:</p>
+   <br>
+   <p>{{gmSales}}</p>
+{% endblock %}
