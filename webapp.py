@@ -180,24 +180,14 @@ def get_gm_data(gam):
 def get_gm_sale(gam):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
-    gm_tm = 0
-    vowels = ['A','E','I','O','U']
+    gm_sal = 0
+    gm_used = 0
     for video in videos:
         if video["Title"] == gam:
-            gm_tm = video["Length"]["All PlayStyles"]["Average"]
-    if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
-        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
-                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
-    elif gm_rtg[0] not in vowels and gm_gnr[0] in vowels:
-        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
-                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
-    elif gm_rtg[0] in vowels and gm_gnr[0] not in vowels:
-        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
-                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
-    elif gm_rtg[0] in vowels and gm_gnr[0] in vowels:
-        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
-                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
-    return gm_desc
+            gm_sal = video["Metrics"]["Sales"]
+            gm_used = video["Metrics"]["Used Price"]
+        gm_sal_des = gam + " sold a total of $" + gam_sal + " million. It could be found in 2010 for a used price of $" + gm_used + "."
+    return gm_sal_des
 
 if __name__=="__main__":
     app.run(debug=False, port=54321)
