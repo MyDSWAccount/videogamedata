@@ -28,7 +28,7 @@ def render_gms():
 @app.route("/gmGame")
 def render_gm_info():
     gm_chosen = request.args['gms']
-    return render_template('game.html', options=get_game(), gmData=get_gm_data(gm_chosen))
+    return render_template('game.html', options=get_game(), gmData=get_gm_data(gm_chosen), gmSale=get_gm_sale(gm_chosen))
 
 @app.route("/pubGame")
 def render_pub_info():
@@ -162,6 +162,28 @@ def get_gm_data(gam):
             gm_cons = video["Release"]["Console"]
             gm_yr = video["Release"]["Year"]
             gm_rtg = video["Release"]["Rating"]
+            gm_tm = video["Length"]["All PlayStyles"]["Average"]
+    if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
+        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
+    elif gm_rtg[0] not in vowels and gm_gnr[0] in vowels:
+        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
+    elif gm_rtg[0] in vowels and gm_gnr[0] not in vowels:
+        gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
+    elif gm_rtg[0] in vowels and gm_gnr[0] in vowels:
+        gm_desc = (gam + " is an " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is an " 
+                   + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
+    return gm_desc
+
+def get_gm_sale(gam):
+    with open('video_games.json') as vG_data:
+        videos = json.load(vG_data)
+    gm_tm = 0
+    vowels = ['A','E','I','O','U']
+    for video in videos:
+        if video["Title"] == gam:
             gm_tm = video["Length"]["All PlayStyles"]["Average"]
     if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
         gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
