@@ -80,7 +80,6 @@ def get_pop_game(yr):
         if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] > high_rate):
             high_rate = game["Metrics"]["Review Score"]
             nm = game["Title"]
-    
     game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100." 
     return game_dat
 
@@ -88,7 +87,9 @@ def get_played_game(yr):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     pt = 0
+    round_pt = 0
     np = 0
+    count = 0
     nm = ""
     gnr = ""
     pub = ""
@@ -103,17 +104,21 @@ def get_played_game(yr):
             gnr = game["Metadata"]["Genres"]
             pub = game["Metadata"]["Publishers"]
             cons = game["Release"]["Console"]
+    for i in pt:
+        count = count + 1
+        if i == ".":
+            round_pt = pt[0:count]
     if pub != "" and gnr[0] not in vowels:
-        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is a " + gnr + " game published by " + pub + " for the " + cons + ".")
     elif pub != "" and gnr[0] in vowels:
-        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is an " + gnr + " game published by " + pub + " for the " + cons + ".")
     elif pub == "" and gnr[0] not in vowels:
-        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is a " + gnr + " game published for the " + cons + ".")
     elif pub == "" and gnr[0] in vowels:
-        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(pt) + " hours between " + str(np) + " users. " 
+        played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is an " + gnr + " game published for the " + cons + ".")
     return played_dat
 
@@ -122,11 +127,17 @@ def get_pub_game(pb):
         videos = json.load(vG_data)
     meta_review = 0
     count = 0
+    ct = 0
+    av_review = ""
     for video in videos:
         if video["Metadata"]["Publishers"] == pb:
             meta_review = meta_review + video["Metrics"]["Review Score"]
             count = count + 1
-    av_review = meta_review/count
+    review = meta_review/count
+    for i in review:
+        ct = ct + 1
+        if i == ".":
+            av_review = review[0:ct]
     review_desc = pb + "'s average metacritic review score was " + str(av_review) + " between " + str(count) + " games."
     return review_desc
 
@@ -134,13 +145,26 @@ def get_pub_sales(pb):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     sales = 0
+    round_sales = 0
+    rd_sales = 0
     count = 0
+    ct = 0
     for video in videos:
         if video["Metadata"]["Publishers"] == pb:
             sales = sales + video["Metrics"]["Sales"]
             count = count + 1
     av_sales = sales/count
-    sale_desc = pb + "'s total sales from 2004 until 2008 was $" + str(sales) + " million. " + pb + " sold $" + str(av_sales) + " million on average for each game it released."
+    for i in av_sales:
+        ct = ct + 1
+        if i == ".":
+            round_sales = av_sales[0:ct]
+            ct = 0
+    for i in sales:
+        ct = ct + 1
+        if i == ".":
+            rd_sales = sales[0:ct]
+            ct = 0
+    sale_desc = pb + "'s total sales from 2004 until 2008 was $" + str(rd_sales) + " million. " + pb + " sold $" + str(round_sales) + " million on average for each game it released."
     return sale_desc
 
 def get_gm_data(gam):
@@ -152,7 +176,6 @@ def get_gm_data(gam):
     gm_cons = ""
     gm_yr = ""
     gm_rtg = ""
-    gm_tm = 0
     vowels = ['A','E','I','O','U']
     for video in videos:
         if video["Title"] == gam:
@@ -162,7 +185,6 @@ def get_gm_data(gam):
             gm_cons = video["Release"]["Console"]
             gm_yr = video["Release"]["Year"]
             gm_rtg = video["Release"]["Rating"]
-            gm_tm = video["Length"]["All PlayStyles"]["Average"]
     if gm_gnr[0] not in vowels and gm_rtg[0] not in vowels:
         gm_desc = (gam + " is a " + gm_gnr + " game published by " + gm_pub + " for the " + gm_cons + ". It was originally released in " + str(gm_yr) + " and is a " 
                    + gm_rtg + " rated game with a " + str(gm_rev) + " review score.")
@@ -186,7 +208,7 @@ def get_gm_sale(gam):
         if video["Title"] == gam:
             gm_sal = video["Metrics"]["Sales"]
             gm_used = video["Metrics"]["Used Price"]
-        gm_sal_des = gam + " sold a total of $" + gam_sal + " million. It could be found in 2010 for a used price of $" + gm_used + "."
+        gm_sal_des = gam + " made a total of $" + str(gam_sal) + " million. It could be found in 2010 for a used price of $" + str(gm_used) + "."
     return gm_sal_des
 
 if __name__=="__main__":
