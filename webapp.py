@@ -107,7 +107,7 @@ def get_played_game(yr):
     for i in str(pt):
         count = count + 1
         if i == ".":
-            round_pt = str(pt)[0:count]
+            round_pt = str(pt)[0:count+2]
     if pub != "" and gnr[0] not in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is a " + gnr + " game published by " + pub + " for the " + cons + ".")
@@ -137,7 +137,7 @@ def get_pub_game(pb):
     for i in str(review):
         ct = ct + 1
         if i == ".":
-            av_review = str(review)[0:ct]
+            av_review = str(review)[0:ct+2]
     review_desc = pb + "'s average metacritic review score was " + str(av_review) + " between " + str(count) + " games."
     return review_desc
 
@@ -149,6 +149,7 @@ def get_pub_sales(pb):
     rd_sales = 0
     count = 0
     ct = 0
+    ct1 = 0
     for video in videos:
         if video["Metadata"]["Publishers"] == pb:
             sales = sales + video["Metrics"]["Sales"]
@@ -157,13 +158,13 @@ def get_pub_sales(pb):
     for i in str(av_sales):
         ct = ct + 1
         if i == ".":
-            round_sales = str(av_sales)[0:ct]
+            round_sales = str(av_sales)[0:ct+2]
             ct = 0
     for i in str(sales):
-        ct = ct + 1
+        ct1 = ct1 + 1
         if i == ".":
-            rd_sales = str(sales)[0:ct]
-            ct = 0
+            rd_sales = str(sales)[0:ct1+2]
+            ct1 = 0
     sale_desc = pb + "'s total sales from 2004 until 2008 was $" + str(rd_sales) + " million. " + pb + " sold $" + str(round_sales) + " million on average for each game it released."
     return sale_desc
 
@@ -204,11 +205,17 @@ def get_gm_sale(gam):
         videos = json.load(vG_data)
     gm_sal = 0
     gm_used = 0
+    count = 0
+    rd_sal = ""
     for video in videos:
         if video["Title"] == gam:
             gm_sal = video["Metrics"]["Sales"]
             gm_used = video["Metrics"]["Used Price"]
-        gm_sal_des = gam + " made a total of $" + str(gam_sal) + " million. It could be found in 2010 for a used price of $" + str(gm_used) + "."
+    for i in str(gm_sal):
+        count = count + 1
+        if i == ".":
+            rd_sal = str(gm_sal)[0:count+2]
+    gm_sal_des = gam + " made a total of $" + str(rd_sal) + " million. It could be found in 2010 for a used price of $" + str(gm_used) + "."
     return gm_sal_des
 
 if __name__=="__main__":
