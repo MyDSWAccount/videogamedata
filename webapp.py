@@ -107,7 +107,7 @@ def get_played_game(yr):
     for i in str(pt):
         count = count + 1
         if i == ".":
-            round_pt = str(pt[0:count])
+            round_pt = str(pt)[0:count]
     if pub != "" and gnr[0] not in vowels:
         played_dat = ("The most played game of " + str(yr) + " was " + nm + " with an average playtime of " + str(round_pt) + " hours between " + str(np) + " users. " 
                       + nm + " is a " + gnr + " game published by " + pub + " for the " + cons + ".")
@@ -137,7 +137,7 @@ def get_pub_game(pb):
     for i in str(review):
         ct = ct + 1
         if i == ".":
-            av_review = str(review[0:ct])
+            av_review = str(review)[0:ct]
     review_desc = pb + "'s average metacritic review score was " + str(av_review) + " between " + str(count) + " games."
     return review_desc
 
@@ -157,12 +157,12 @@ def get_pub_sales(pb):
     for i in str(av_sales):
         ct = ct + 1
         if i == ".":
-            round_sales = str(av_sales[0:ct])
+            round_sales = str(av_sales)[0:ct]
             ct = 0
     for i in str(sales):
         ct = ct + 1
         if i == ".":
-            rd_sales = str(sales[0:ct])
+            rd_sales = str(sales)[0:ct]
             ct = 0
     sale_desc = pb + "'s total sales from 2004 until 2008 was $" + str(rd_sales) + " million. " + pb + " sold $" + str(round_sales) + " million on average for each game it released."
     return sale_desc
