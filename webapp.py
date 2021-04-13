@@ -28,7 +28,7 @@ def render_gms():
 @app.route("/gmGame")
 def render_gm_info():
     gm_chosen = request.args['gms']
-    return render_template('game.html', options=get_game(), gmData=get_gm_data(gm_chosen), gmSale=get_gm_sale(gm_chosen))
+    return render_template('game.html', options=get_game(), gmData=get_gm_data(gm_chosen), gmSales=get_gm_sale(gm_chosen))
 
 @app.route("/pubGame")
 def render_pub_info():
