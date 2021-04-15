@@ -75,12 +75,19 @@ def get_pop_game(yr):
     with open('video_games.json') as vG_data:
         videos = json.load(vG_data)
     high_rate = 0
+    low_rate = 99
     nm = ""
+    nm1 = ""
     for game in videos:
         if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] > high_rate):
             high_rate = game["Metrics"]["Review Score"]
             nm = game["Title"]
-    game_dat = "The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100." 
+    for game in videos:
+        if (game["Release"]["Year"] == int(yr)) and (game["Metrics"]["Review Score"] < low_rate):
+            low_rate = game["Metrics"]["Review Score"]
+            nm1 = game["Title"]
+    game_dat = ("The most popular game of " + str(yr) + " was " + nm + " with a metacritic score of " + str(high_rate) + " out of 100. The least popular game of "
+                + str(yr) + " was " + nm1 + " with a metacritic score of " + str(low_rate) + " out of 100.")
     return game_dat
 
 def get_played_game(yr):
